@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // register services into the container
 builder.Services.AddControllers();
+
 builder.Services.AddOpenApiDocument();
 
 var app = builder.Build();
@@ -16,8 +17,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
+
 app.UseRouting();
+
+app.UseOpenApi();
+
 app.MapDefaultControllerRoute();
+
 app.MapFallbackToFile("index.html");
+
 app.Run();
