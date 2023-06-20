@@ -1,6 +1,6 @@
 ## Generated files ###
 
-/src/Web/ClientApp/src/generated
+/src/Web/ClientApp/src/api/generated
 
 # Created by https://www.toptal.com/developers/gitignore/api/dotnetcore,node,linux,macos,windows,intellij,visualstudiocode,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=dotnetcore,node,linux,macos,windows,intellij,visualstudiocode,visualstudio

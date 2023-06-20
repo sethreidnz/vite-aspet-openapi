@@ -3,7 +3,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>4.5</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
@@ -16,6 +16,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.16" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.19.0" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.19.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +42,7 @@
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
   </Target>
 
-  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+  <Target Name="PublishClient" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
@@ -54,4 +58,14 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <Target Name="GenerateTSClient" AfterTargets="Build" BeforeTargets="PublishClient">
+    <MakeDir Directories="$(SpaRoot)/src/api/generated" />
+    <Exec WorkingDirectory="$(SpaRoot)/src/api/generated"
+      EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development"
+      Command="$(NSwagExe_Net60) aspnetcore2openapi /assembly:$(TargetPath) /output:openapi.json" />
+    <Exec WorkingDirectory="$(SpaRoot)/src/api/generated"
+      Command="$(NSwagExe_Net60) openapi2tsclient /input:openapi.json /output:client.ts /markoptionalproperties:true /typescriptversion:$(TypeScriptToolsVersion)" />
+  </Target>
+
 </Project>

@@ -1,14 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { WeatherForecastClient, WeatherForecast } from "./generated/clients";
+import { WeatherForecastClient, WeatherForecast } from "./api/generated/client";
+import { API_BASE_URL } from "./api/constants";
 
 function App() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [error, setError] = useState<unknown | undefined>(undefined);
   const [data, setData] = useState<WeatherForecast[]>([]);
-  const client = useMemo(
-    () => new WeatherForecastClient("https://localhost:3000"),
-    []
-  );
+  const client = useMemo(() => new WeatherForecastClient(API_BASE_URL), []);
   useEffect(() => {
     async function fetchData() {
       if (!hasLoaded) {

@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // register services into the container
 builder.Services.AddControllers();
-builder.Services.AddSwaggerDocument();
+builder.Services.AddOpenApiDocument();
 
 var app = builder.Build();
 
@@ -18,12 +18,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
-// configure OpenAPI and swagger
-app.UseOpenApi();
-app.UseSwaggerUi3();
-
-app.MapGet("api/test", () => new { Test = "hello" });
 app.MapDefaultControllerRoute();
 app.MapFallbackToFile("index.html");;
 app.Run();
