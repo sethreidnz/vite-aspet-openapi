@@ -1,12 +1,6 @@
 name: .NET Core CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - "*"
+on: [push]
 
 env:
   AZURE_WEBAPP_NAME: vite-dotnet-openapi
