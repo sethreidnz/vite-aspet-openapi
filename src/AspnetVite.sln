@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{FA17A6B9-DAF9-4B63-9FA5-06FDA5994566}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiClient", "ApiClient\ApiClient.csproj", "{A2DF826E-16BF-46EC-BEE1-549ED58A7583}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA17A6B9-DAF9-4B63-9FA5-06FDA5994566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA17A6B9-DAF9-4B63-9FA5-06FDA5994566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA17A6B9-DAF9-4B63-9FA5-06FDA5994566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA17A6B9-DAF9-4B63-9FA5-06FDA5994566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2DF826E-16BF-46EC-BEE1-549ED58A7583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2DF826E-16BF-46EC-BEE1-549ED58A7583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2DF826E-16BF-46EC-BEE1-549ED58A7583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2DF826E-16BF-46EC-BEE1-549ED58A7583}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,14 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { WeatherForecastClient, WeatherForecast } from "./generated/clients";
 
 function App() {
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [data, setData] = useState<{ test: string }>();
+  const [error, setError] = useState<unknown | undefined>(undefined);
+  const [data, setData] = useState<WeatherForecast[]>([]);
+  const client = useMemo(
+    () => new WeatherForecastClient("https://localhost:3000"),
+    []
+  );
   useEffect(() => {
     async function fetchData() {
       if (!hasLoaded) {
-        const response = await (await fetch("/api/test")).json();
-        setData(response);
-        setHasLoaded(true);
+        try {
+          const response = await client.get();
+          setData(response);
+          setHasLoaded(true);
+        } catch (error) {
+          setError(error);
+          setHasLoaded(true);
+        }
       }
     }
     fetchData();
@@ -18,7 +29,11 @@ function App() {
     return "Loading...";
   }
 
-  return <>{data?.test}</>;
+  if (error) {
+    return <>{JSON.stringify(error)}</>;
+  }
+
+  return <>{JSON.stringify(data)}</>;
 }
 
 export default App;
